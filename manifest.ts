@@ -1,11 +1,11 @@
 import { Manifest } from "deno-slack-sdk/mod.ts";
-import SendMessageWorkflow from "./workflows/send_message_workflow.ts";
+import SnedBlogPostsMessageWorkflow from "./workflows/send_blog_posts_message_workflow.ts";
 
 export default Manifest({
-  name: "zenn-last-month-articles",
-  description: "Notify monthly zenn articles",
+  name: "blog-posts-notifier",
+  description: "Notify last month blog posts",
   icon: "assets/app_icon.png",
-  workflows: [SendMessageWorkflow],
+  workflows: [SnedBlogPostsMessageWorkflow],
   outgoingDomains: ["zenn.dev"],
   botScopes: [
     "commands",
