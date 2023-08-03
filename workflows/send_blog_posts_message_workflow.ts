@@ -1,5 +1,5 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
-import { FetchLastMonthArticlesDefinition } from "../functions/fetch_last_month_articles_function.ts";
+import { FetchZennArticles } from "../functions/fetch_zenn_articles.ts";
 
 const SendBlogPostsMessageWorkflow = DefineWorkflow({
   callback_id: "send_blog_posts_message",
@@ -8,7 +8,7 @@ const SendBlogPostsMessageWorkflow = DefineWorkflow({
 });
 
 const fetchLastMonthArticlesStep = SendBlogPostsMessageWorkflow.addStep(
-  FetchLastMonthArticlesDefinition,
+  FetchZennArticles,
   {},
 );
 

@@ -8,10 +8,10 @@ interface UserArticles {
   articles: Article[];
 }
 
-export const FetchLastMonthArticlesDefinition = DefineFunction({
-  callback_id: "fetch_last_month_zenn_articles",
+export const FetchZennArticles = DefineFunction({
+  callback_id: "fetch_zenn_articles",
   title: "Fetch last month zenn articles",
-  source_file: "functions/fetch_last_month_articles_function.ts",
+  source_file: "functions/fetch_zenn_articles.ts",
   output_parameters: {
     properties: {
       message: {
@@ -28,7 +28,7 @@ export const FetchLastMonthArticlesDefinition = DefineFunction({
 });
 
 export default SlackFunction(
-  FetchLastMonthArticlesDefinition,
+  FetchZennArticles,
   async ({ env }) => {
     const publicationName = env["PUBLICATION_NAME"];
     if (publicationName == null) {
@@ -98,10 +98,9 @@ function makeMessage(userArticles: UserArticles[]): string {
   userArticles.forEach((userArticle, i) => {
     let m = `${userArticle.userName} さんの先月のZennブログ投稿です\n`;
     userArticle.articles.forEach((article) => {
-      m +=
-        `・ ${article.title} | https://zenn.dev/egstock_inc${article.path} | ${
-          datetime(article.published_at).toISODate()
-        }\n`;
+      m += `・ ${article.title} | https://zenn.dev${article.path} | ${
+        datetime(article.published_at).toISODate()
+      }\n`;
     });
     message += m;
     if (userArticles.length - 1 !== i) {
