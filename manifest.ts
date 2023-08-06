@@ -6,7 +6,7 @@ export default Manifest({
   description: "Notify last month blog posts",
   icon: "assets/app_icon.png",
   workflows: [SnedBlogPostsMessageWorkflow],
-  outgoingDomains: ["zenn.dev"],
+  outgoingDomains: ["zenn.dev", "www.wantedly.com"],
   botScopes: [
     "commands",
     "chat:write",

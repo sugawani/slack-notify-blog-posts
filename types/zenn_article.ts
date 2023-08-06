@@ -1,4 +1,4 @@
-export interface GetArticles {
+export interface ZennArticle {
   articles: Article[];
   next_page: null;
 }

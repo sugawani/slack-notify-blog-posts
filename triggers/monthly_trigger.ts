@@ -9,8 +9,7 @@ const MonthlyTrigger: Trigger<typeof SnedBlogPostsMessageWorkflow.definition> =
     schedule: {
       start_time: datetime().add({ second: 30 }).toISO(),
       frequency: {
-        type: "monthly",
-        on_week_num: 1,
+        type: "once",
       },
       timezone: "JST",
     },

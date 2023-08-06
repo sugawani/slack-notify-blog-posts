@@ -1,4 +1,5 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
+import { FetchWantedlyArticles } from "../functions/fetch_wantedly_articles.ts";
 import { FetchZennArticles } from "../functions/fetch_zenn_articles.ts";
 
 const SendBlogPostsMessageWorkflow = DefineWorkflow({
@@ -7,7 +8,7 @@ const SendBlogPostsMessageWorkflow = DefineWorkflow({
   description: "Send blog posts summary message",
 });
 
-const fetchLastMonthArticlesStep = SendBlogPostsMessageWorkflow.addStep(
+const fetchLastMonthZennArticleStep = SendBlogPostsMessageWorkflow.addStep(
   FetchZennArticles,
   {},
 );
@@ -15,8 +16,21 @@ const fetchLastMonthArticlesStep = SendBlogPostsMessageWorkflow.addStep(
 SendBlogPostsMessageWorkflow.addStep(
   Schema.slack.functions.SendMessage,
   {
-    channel_id: fetchLastMonthArticlesStep.outputs.channel_id,
-    message: fetchLastMonthArticlesStep.outputs.message,
+    channel_id: fetchLastMonthZennArticleStep.outputs.channel_id,
+    message: fetchLastMonthZennArticleStep.outputs.message,
+  },
+);
+
+const fetchLastMonthWantedlyArticleStep = SendBlogPostsMessageWorkflow.addStep(
+  FetchWantedlyArticles,
+  {},
+);
+
+SendBlogPostsMessageWorkflow.addStep(
+  Schema.slack.functions.SendMessage,
+  {
+    channel_id: fetchLastMonthWantedlyArticleStep.outputs.channel_id,
+    message: fetchLastMonthWantedlyArticleStep.outputs.message,
   },
 );
 

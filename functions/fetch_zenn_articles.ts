@@ -1,5 +1,5 @@
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
-import { Article, GetArticles, User } from "../types/get_articles.ts";
+import { Article, User, ZennArticle } from "../types/zenn_article.ts";
 import { datetime } from "ptera/datetime.ts";
 
 interface UserArticles {
@@ -45,7 +45,7 @@ export default SlackFunction(
     if (!response.ok) {
       throw `failed to fetch articles err: ${response.body}`;
     }
-    const data: GetArticles = await response.json();
+    const data: ZennArticle = await response.json();
     const lastMonthArticles = extractLastMonthArticles(data.articles);
     const userArticles = reduceUserArticles(lastMonthArticles);
 
