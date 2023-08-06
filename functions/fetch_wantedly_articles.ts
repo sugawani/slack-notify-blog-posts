@@ -35,7 +35,7 @@ export default SlackFunction(
     }
 
     const response = await fetch(
-      `https://www.wantedly.com/companies/company_${companyID}/stories`,
+      `https://www.wantedly.com/companies/${companyID}/stories`,
     );
     if (!response.ok) {
       throw `failed to fetch articles err: ${response.body}`;
