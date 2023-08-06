@@ -19,7 +19,7 @@
 
 # Slack blog posts notifier
 
-先月 Zenn/Wantedly に投稿された記事を Slack に通知するボットです  
+Zenn/Wantedly に先月投稿された記事を Slack に通知するボットです  
 [Slack Platform](https://api.slack.com/start/overview)の仕組みで動いています
 
 # 各種トリガーの説明
@@ -45,12 +45,12 @@ https://api.slack.com/automation/quickstart
 
 ### zenn の publication
 
-`.env` ファイルの `PUBLICATION_NAME` に取得する zenn publication ID を追記してください
+`.env` ファイルの `PUBLICATION_NAME` に取得する zenn publication ID を追記してください  
 publication ID は https://zenn.dev/p/xxxxx の形で記載されています
 
 ### wantedly の 企業 ID
 
-`.env` ファイルの `COMPANY_ID` に取得する企業の company ID を追記してください
+`.env` ファイルの `COMPANY_ID` に取得する企業の company ID を追記してください  
 company ID は https://www.wantedly.com/companies/xxxxx の形で記載されています
 
 
@@ -64,17 +64,17 @@ company ID は https://www.wantedly.com/companies/xxxxx の形で記載されて
 ## 環境変数の設定  
 ### 通知先チャンネル
 
-`slack env add NOTIFY_CHANNEL_ID XXXXXXX` を実行し、通知先のチャンネル ID を環境変数に設定してください 
+`slack env add NOTIFY_CHANNEL_ID XXXXXXX` を実行し、通知先のチャンネル ID を環境変数に設定してください  
 チャンネル ID はチャンネル詳細下部に `Channel ID: XXXXXXXX` の形で記載されています
 
 ### zenn の publication
 
-`slack env add PUBLICATION_NAME XXXXXXX` を実行し、取得する zenn publication ID を環境変数に設定してください 
+`slack env add PUBLICATION_NAME XXXXXXX` を実行し、取得する zenn publication ID を環境変数に設定してください  
 publication ID は https://zenn.dev/p/xxxxx の形で記載されています
 
 ### wantedly の 企業 ID
 
-`slack env add COMPANY_ID XXXXXXX` を実行し、取得する企業の company ID を環境変数に設定してください 
+`slack env add COMPANY_ID XXXXXXX` を実行し、取得する企業の company ID を環境変数に設定してください  
 company ID は https://www.wantedly.com/companies/xxxxx の形で記載されています
 
 ## デプロイ
