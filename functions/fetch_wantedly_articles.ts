@@ -13,12 +13,8 @@ export const FetchWantedlyArticles = DefineFunction({
         type: Schema.types.string,
         description: "Monthly wantedly article summary",
       },
-      channel_id: {
-        type: Schema.types.string,
-        description: "Notify target channel id",
-      },
     },
-    required: ["message", "channel_id"],
+    required: ["message"],
   },
 });
 
@@ -28,10 +24,6 @@ export default SlackFunction(
     const companyID = env["COMPANY_ID"];
     if (companyID == null) {
       throw "COMPANY_ID env not found";
-    }
-    const channelID = env["NOTIFY_CHANNEL_ID"];
-    if (channelID == null) {
-      throw "NOTIFY_CHANNEL_ID env not found";
     }
 
     const response = await fetch(
@@ -48,7 +40,6 @@ export default SlackFunction(
     return {
       outputs: {
         message: makeMessage(lastMonthArticles),
-        channel_id: channelID,
       },
     };
   },

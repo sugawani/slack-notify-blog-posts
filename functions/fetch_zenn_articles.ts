@@ -18,12 +18,8 @@ export const FetchZennArticles = DefineFunction({
         type: Schema.types.string,
         description: "Monthly zenn article summary",
       },
-      channel_id: {
-        type: Schema.types.string,
-        description: "Notify target channel id",
-      },
     },
-    required: ["message", "channel_id"],
+    required: ["message"],
   },
 });
 
@@ -33,10 +29,6 @@ export default SlackFunction(
     const publicationName = env["PUBLICATION_NAME"];
     if (publicationName == null) {
       throw "PUBLICATION_NAME env not found";
-    }
-    const channelID = env["NOTIFY_CHANNEL_ID"];
-    if (channelID == null) {
-      throw "NOTIFY_CHANNEL_ID env not found";
     }
 
     const response = await fetch(
@@ -52,7 +44,6 @@ export default SlackFunction(
     return {
       outputs: {
         message: makeMessage(userArticles),
-        channel_id: channelID,
       },
     };
   },
